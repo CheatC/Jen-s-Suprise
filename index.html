@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Happy Birthday Jenny!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f06, #48f);
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            animation: fadeIn 2s ease-in-out;
+            display: none; /* Hidden initially */
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #ff6347;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff4500;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+        }
+
+        /* Balloons with Images */
+        .balloon {
+            width: 100px;
+            height: 130px;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -100px;
+            animation: floatUp 10s infinite ease-in-out;
+            display: none; /* Initially hidden */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Specific balloons with different image backgrounds */
+        .balloon:nth-child(1) { left: 10%; animation-delay: 0s; background-image: url(image\ 1.jpg); }
+        .balloon:nth-child(2) { left: 20%; animation-delay: 1s; background-image: url(image\ 1.jpg); }
+        .balloon:nth-child(3) { left: 30%; animation-delay: 2s; background-image: url(image\ 3.jpg); }
+        .balloon:nth-child(4) { left: 40%; animation-delay: 3s; background-image: url(image\ 2.jpg); }
+        .balloon:nth-child(5) { left: 50%; animation-delay: 1.5s; background-image: url(image\ 4.jpg); }
+        .balloon:nth-child(6) { left: 60%; animation-delay: 2.5s; background-image: url(image\ 5.jpg); }
+        .balloon:nth-child(7) { left: 70%; animation-delay: 3.5s; background-image: url(image\ 6.jpg); }
+        .balloon:nth-child(8) { left: 80%; animation-delay: 4s; background-image: url('https://via.placeholder.com/100'); }
+        .balloon:nth-child(9) { left: 90%; animation-delay: 2s; background-image: url('https://via.placeholder.com/100'); }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-400px); }
+            100% { transform: translateY(-800px); }
+        }
+
+        /* Confetti from the sides */
+        .confetti {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: absolute;
+            opacity: 0;
+            animation: confettiAnimation 3s forwards ease-in-out;
+        }
+        /* Confetti Colors */
+        .confetti:nth-child(1) { background-color: #ff6347; }
+        .confetti:nth-child(2) { background-color: #48f; }
+        .confetti:nth-child(3) { background-color: #ffda79; }
+        .confetti:nth-child(4) { background-color: #c6e377; }
+        .confetti:nth-child(5) { background-color: #f06; }
+        .confetti:nth-child(6) { background-color: #48f; }
+
+        /* Confetti Animation */
+        @keyframes confettiAnimation {
+            0% {
+                opacity: 0;
+                transform: translateX(-100vw) translateY(0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(100vw) translateY(100vh);
+            }
+        }
+
+        /* Alternate Confetti From Right */
+        .confetti.right {
+            animation: confettiRight 3s forwards ease-in-out;
+        }
+
+        @keyframes confettiRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100vw) translateY(0);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-100vw) translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="birthdayMessage">Happy Birthday Jenny!</h1>
+        <p>Wishing you all the love, joy, and happiness in the world on your special day. Have a fabulous year ahead!</p>
+        <button onclick="startCelebration()">Click for a Surprise!</button>
+        <p id="message" style="display:none; margin-top:20px;">🎉 You're amazing, Jenny! 🎉</p>
+    </div>
+
+    <!-- Balloons (all balloons now have images) -->
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+
+    <!-- Confetti from both sides -->
+    <div class="confetti"></div>
+    <div class="confetti right"></div>
+    <div class="confetti"></div>
+    <div class="confetti right"></div>
+    <div class="confetti"></div>
+    <div class="confetti right"></div>
+    <!-- Add these lines inside the body tag, just before the script tag -->
+
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="happy-birthday-to-you-latin-loop.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Confetti Pop Sound Effect -->
+    <audio id="confettiPopSound">
+        <source src="christmas-cracker-confetti-cannon.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+   
+    <!-- Trumpet Pop Sound Effect -->
+    <audio id="trumpetSound">
+        <source src="trump_nomerodin1__vuvuzela.wav" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+
+
+    <script>
+        function startCelebration() {
+            // Show the message
+            document.getElementById('message').style.display = 'block';
+
+            // Show "Happy Birthday" after a short delay
+            setTimeout(function() {
+                document.getElementById('birthdayMessage').style.display = 'block';
+            }, 500); // 500ms delay
+
+            // Show the balloons
+            let balloons = document.querySelectorAll('.balloon');
+            balloons.forEach(function(balloon) {
+                balloon.style.display = 'block';
+            });
+
+            // Activate the confetti
+            let confetti = document.querySelectorAll('.confetti');
+            confetti.forEach(function(piece) {
+                piece.style.display = 'block';
+            });
+            // Play background music
+            document.getElementById('backgroundMusic').play();
+
+            // Play confetti pop sound effect
+            document.getElementById('confettiPopSound').play();
+        
+          // Play confetti pop sound effect
+          document.getElementById('trumpetSound').play();
+        
+        
+        }
+
+        
+    </script>
+</body>
+</html>
